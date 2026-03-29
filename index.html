@@ -2,7 +2,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Cebada Cocina</title>
+<title>CEBADA COCINA</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -118,33 +119,18 @@ button {
 <option value="42000">Chipá x45 - $42.000</option>
 </select>
 </div>
-
-<div class="box">
-<h3>Datos</h3>
-
+  
+</div>
 <input id="nombre" placeholder="Nombre">
 <input id="direccion" placeholder="Dirección">
-
-<select id="zona" onchange="calcularTotal()">
-<option value="">Seleccionar zona</option>
-
-<option value="15000">Guillón / Lavallol / Turdera</option>
-<option value="20000">Monte Grande / El Jagüel</option>
-<option value="30000">Adrogué / Burzaco / Mármol / Temperley</option>
-<option value="40000">Lomas / Banfield / Canning</option>
-<option value="0">Otra zona</option>
-
+<input id="telefono" placeholder="Teléfono">
+<select id="pago">
+  <option value="">Método de pago</option>
+  <option>Transferencia (seña 50% para confirmar)</option>
+  <option>Efectivo</option>
 </select>
 
-<div id="resumenPedido">
-Total: $0
-</div>
-
-<input id="telefono" placeholder="Teléfono">
-
-</div>
-
-<button onclick="enviarPedido()">CONFIRMAR PEDIDO POR WHATSAPP</button>
+<button onclick="enviarPedido()">CONFIRMAR PEDIDO</button>
 
 <script>
 
@@ -177,22 +163,48 @@ document.getElementById("resumenPedido").innerText = texto;
 }
 
 function enviarPedido() {
-
+let mensaje = "🧾 *PEDIDO CEBADA COCINA*%0A%0A";
 let nombre = document.getElementById("nombre").value;
 let direccion = document.getElementById("direccion").value;
 let telefono = document.getElementById("telefono").value;
+let pago = document.getElementById("pago").value;
 
-let mensaje = "Pedido:%0A";
+mensaje += "🧾 Pedido:%0A";
 
-mensaje += "Medialunas: " + document.getElementById("medialunas").value + "%0A";
-mensaje += "Cookies: " + document.getElementById("cookies").value + "%0A";
-mensaje += "Alfajores: " + document.getElementById("alfajores").value + "%0A";
-mensaje += "Granola: " + document.getElementById("granola").value + "%0A";
-mensaje += "Panificados: " + document.getElementById("pan").value + "%0A";
+let med = document.getElementById("medialunas");
+if (med.value != "0") {
+  mensaje += "🥐 " + med.options[med.selectedIndex].text + "%0A";
+}
 
-mensaje += "%0ANombre: " + nombre + "%0A";
-mensaje += "Dirección: " + direccion + "%0A";
-mensaje += "Teléfono: " + telefono;
+let cookies = document.getElementById("cookies");
+if (cookies.value != "0") {
+  mensaje += "🍪 " + cookies.options[cookies.selectedIndex].text + "%0A";
+}
+
+let alfa = document.getElementById("alfajores");
+if (alfa.value != "0") {
+  mensaje += " Alfajores: " + alfa.options[alfa.selectedIndex].text + "%0A";
+}
+
+let granola = document.getElementById("granola");
+if (granola.value != "0") {
+  mensaje += "🥣 " + granola.options[granola.selectedIndex].text + "%0A";
+}
+
+let pan = document.getElementById("pan");
+if (pan.value != "0") {
+  mensaje += "🍞 " + pan.options[pan.selectedIndex].text + "%0A";
+}
+// DATOS CLIENTE
+mensaje += "%0A👤 Nombre: " + nombre + "%0A";
+mensaje += "📍 Dirección: " + direccion + "%0A";
+mensaje += "📞 Teléfono: " + telefono + "%0A";
+
+// PAGO
+if (pago) {
+  mensaje += "💳 Pago: " + pago + "%0A";
+}
+mensaje += "%0A💳 Condición:%0AReserva con 50% por transferencia.%0A";
 
 window.open("https://wa.me/5491122897108?text=" + mensaje);
 
