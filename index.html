@@ -216,7 +216,22 @@ const catalog = {
             ["Pepas x2", 10000],
             ["Matera x12 surtida", 14000],
             ["Matera surtida x2", 28000]
-        ]
+      },
+        "EMPRESAS Y EVENTOS": {
+    "Coffee Break": [
+        ["20 medialunas", 26000],
+        ["40 medialunas", 50000],
+        ["60 medialunas", 72000]
+    ],
+    "Cookies Evento": [
+        ["50 minis surtidas", 52000],
+        ["100 minis surtidas", 98000]
+    ],
+    "Alfajores Box": [
+        ["20 alfajores surtidos", 38000],
+        ["40 alfajores surtidos", 74000]
+    ]
+}
     }
 };
 
@@ -269,7 +284,17 @@ function renderProducts() {
                 row.className = "item";
 
                 const label = document.createElement("label");
-                label.textContent = `${item[0]} - $${item[1]}`;
+                let extra = "";
+
+if (
+    item[0].includes("36 minis") ||
+    item[0].includes("18 grandes") ||
+    item[0].includes("12 unidades")
+) {
+    extra = " ⭐ Mejor precio";
+}
+
+label.textContent = `${item[0]} - $${item[1]}${extra}`;
 
                 const checkbox = document.createElement("input");
                 checkbox.type = "checkbox";
