@@ -150,121 +150,132 @@ input,select{
 </div>
 
 <script>
-const whatsapp="5491122897108";
-const productsDiv=document.getElementById("products");
+const whatsapp = "5491122897108";
+const productsDiv = document.getElementById("products");
 
-const catalog={
-"MEDIALUNAS":{
-    "Opciones":[
-        ["Media docena",8000],
-        ["1 docena",15000],
-        ["2 docenas",29000],
-        ["3 docenas",43000],
-        ["4 docenas",56000],
-        ["5 docenas",69000],
-        ["6 docenas",82000]
-    ]
-},
-"COOKIES":{
-    "Choco Nuez":[
-        ["12 minis",13000],
-        ["24 minis",25000],
-        ["36 minis",36000],
-        ["6 grandes",13000],
-        ["12 grandes",25000],
-        ["18 grandes",36000]
-    ],
-    "Choco Maní":[
-        ["12 minis",13000],
-        ["24 minis",25000],
-        ["36 minis",36000],
-        ["6 grandes",13000],
-        ["12 grandes",25000],
-        ["18 grandes",36000]
-    ],
-    "Triple Chocolate":[
-        ["12 minis",13000],
-        ["24 minis",25000],
-        ["36 minis",36000],
-        ["6 grandes",13000],
-        ["12 grandes",25000],
-        ["18 grandes",36000]
-    ]
-},
-"ALFAJORES":{
-    "Maicena":[],
-    "Chocolate":[],
-    "Glaseado":[]
-},
-"GRANOLA":{
-    "Opciones":[]
-},
-"CHIPACITOS":{
-    "Opciones":[]
-},
-"PANIFICADOS":{
-    "Opciones":[
-        ["Pan semi integral",7000],
-        ["2 unidades",14000],
-        ["1 cortado",7500],
-        ["2 cortado",15000],
-        ["Centeno",9000],
-        ["2 centeno",18000],
-        ["Centeno cortado",9500],
-        ["2 centeno cortado",19000],
-        ["Pepas 250gr",5000],
-        ["Pepas x2",10000],
-        ["Matera x12 surtida",14000],
-        ["Matera surtida x2",28000]
-    ]
-}
+const catalog = {
+    "MEDIALUNAS": {
+        "Opciones": [
+            ["Media docena", 8000],
+            ["1 docena", 15000],
+            ["2 docenas", 29000],
+            ["3 docenas", 43000],
+            ["4 docenas", 56000],
+            ["5 docenas", 69000],
+            ["6 docenas", 82000]
+        ]
+    },
+    "COOKIES": {
+        "Choco Nuez": [
+            ["12 minis", 13000],
+            ["24 minis", 25000],
+            ["36 minis", 36000],
+            ["6 grandes", 13000],
+            ["12 grandes", 25000],
+            ["18 grandes", 36000]
+        ],
+        "Choco Maní": [
+            ["12 minis", 13000],
+            ["24 minis", 25000],
+            ["36 minis", 36000],
+            ["6 grandes", 13000],
+            ["12 grandes", 25000],
+            ["18 grandes", 36000]
+        ],
+        "Triple Chocolate": [
+            ["12 minis", 13000],
+            ["24 minis", 25000],
+            ["36 minis", 36000],
+            ["6 grandes", 13000],
+            ["12 grandes", 25000],
+            ["18 grandes", 36000]
+        ]
+    },
+    "ALFAJORES": {
+        "Maicena": [],
+        "Chocolate": [],
+        "Glaseado": []
+    },
+    "GRANOLA": {
+        "Opciones": []
+    },
+    "CHIPACITOS": {
+        "Opciones": []
+    },
+    "PANIFICADOS": {
+        "Opciones": [
+            ["Pan semi integral", 7000],
+            ["2 unidades", 14000],
+            ["1 cortado", 7500],
+            ["2 cortado", 15000],
+            ["Centeno", 9000],
+            ["2 centeno", 18000],
+            ["Centeno cortado", 9500],
+            ["2 centeno cortado", 19000],
+            ["Pepas 250gr", 5000],
+            ["Pepas x2", 10000],
+            ["Matera x12 surtida", 14000],
+            ["Matera surtida x2", 28000]
+        ]
+    }
 };
 
-const alfajorPrices=[2000,4000,6000,8000,10000,12000,13600,15200,16600,18000];
+const alfajorPrices = [2000, 4000, 6000, 8000, 10000, 12000, 13600, 15200, 16600, 18000];
 
-["Maicena","Chocolate","Glaseado"].forEach(tipo=>{
-    for(let i=1;i<=10;i++){
-        catalog["ALFAJORES"][tipo].push([`${i} unidades`,alfajorPrices[i-1]]);
+["Maicena", "Chocolate", "Glaseado"].forEach(tipo => {
+    for (let i = 1; i <= 10; i++) {
+        catalog["ALFAJORES"][tipo].push([`${i} unidades`, alfajorPrices[i - 1]]);
     }
 });
 
-for(let i=1;i<=5;i++){
-    catalog["GRANOLA"]["Opciones"].push([`${i} bolsa 300gr`,i*8500]);
+for (let i = 1; i <= 5; i++) {
+    catalog["GRANOLA"]["Opciones"].push([`${i} bolsa 300gr`, i * 8500]);
 }
 
-for(let i=1;i<=4;i++){
-    catalog["CHIPACITOS"]["Opciones"].push([`${i*15} unidades`,i*14000]);
+for (let i = 1; i <= 4; i++) {
+    catalog["CHIPACITOS"]["Opciones"].push([`${i * 15} unidades`, i * 14000]);
 }
 
-let selected={};
+let selected = {};
 
-function renderProducts(){
-    for(let mainCat in catalog){
-        let mainButton=document.createElement("button");
-        mainButton.className="accordion";
-        mainButton.innerText=mainCat;
+function renderProducts() {
+    productsDiv.innerHTML = "";
 
-        let mainPanel=document.createElement("div");
-        mainPanel.className="panel";
+    for (let mainCat in catalog) {
+        const mainButton = document.createElement("button");
+        mainButton.className = "accordion";
+        mainButton.innerText = mainCat;
 
-        mainButton.onclick=function(){
-            mainPanel.style.display=
-            mainPanel.style.display==="block"?"none":"block";
-        };
+        const mainPanel = document.createElement("div");
+        mainPanel.className = "panel";
 
-        for(let subCat in catalog[mainCat]){
-            let subTitle=document.createElement("h3");
-            subTitle.innerText=subCat;
+        mainButton.addEventListener("click", () => {
+            mainPanel.style.display =
+                mainPanel.style.display === "block" ? "none" : "block";
+        });
+
+        for (let subCat in catalog[mainCat]) {
+            const subTitle = document.createElement("h3");
+            subTitle.innerText = subCat;
             mainPanel.appendChild(subTitle);
 
-            catalog[mainCat][subCat].forEach(item=>{
-                let row=document.createElement("div");
-                row.className="item";
-                row.innerHTML=`
-                    <label>${item[0]} - $${item[1]}</label>
-                    <input type="checkbox" style="width:auto"
-                    onchange="toggleItem('${mainCat} - ${subCat}','${item[0]}',${item[1]},this.checked)">
-                `;
+            catalog[mainCat][subCat].forEach(item => {
+                const row = document.createElement("div");
+                row.className = "item";
+
+                const label = document.createElement("label");
+                label.textContent = `${item[0]} - $${item[1]}`;
+
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.style.width = "auto";
+
+                checkbox.addEventListener("change", function () {
+                    toggleItem(`${mainCat} - ${subCat}`, item[0], item[1], this.checked);
+                });
+
+                row.appendChild(label);
+                row.appendChild(checkbox);
                 mainPanel.appendChild(row);
             });
         }
@@ -274,48 +285,51 @@ function renderProducts(){
     }
 }
 
-function toggleItem(cat,name,price,checked){
-    let key=cat+" - "+name;
-    if(checked) selected[key]=price;
-    else delete selected[key];
+function toggleItem(cat, name, price, checked) {
+    const key = `${cat} - ${name}`;
+    if (checked) {
+        selected[key] = price;
+    } else {
+        delete selected[key];
+    }
     updateTotal();
 }
 
-function updateTotal(){
-    let total=Object.values(selected).reduce((a,b)=>a+b,0);
-    document.getElementById("total").innerText=total;
+function updateTotal() {
+    const total = Object.values(selected).reduce((a, b) => a + b, 0);
+    document.getElementById("total").innerText = total;
     updateShipping();
 }
 
-function updateShipping(){
-    let total=Object.values(selected).reduce((a,b)=>a+b,0);
-    let min=Number(document.getElementById("zona").value);
-    let msg=document.getElementById("shippingMessage");
+function updateShipping() {
+    const total = Object.values(selected).reduce((a, b) => a + b, 0);
+    const min = Number(document.getElementById("zona").value);
+    const msg = document.getElementById("shippingMessage");
 
-    if(!min){
-        msg.innerText="";
+    if (!min) {
+        msg.innerText = "";
         return;
     }
 
-    if(total>=min){
-        msg.innerText="✅ ¡Ya tenés envío gratis!";
-    }else{
-        msg.innerText=`Te faltan $${min-total} para envío gratis`;
+    if (total >= min) {
+        msg.innerText = "✅ ¡Ya tenés envío gratis!";
+    } else {
+        msg.innerText = `Te faltan $${min - total} para envío gratis`;
     }
 }
 
-function sendWhatsApp(){
-    let pedido=Object.keys(selected).map(x=>"• "+x).join("%0A");
-    let nombre=document.getElementById("nombre").value;
-    let direccion=document.getElementById("direccion").value;
-    let telefono=document.getElementById("telefono").value;
-    let zona=document.getElementById("zona").selectedOptions[0].text;
-    let pago=document.getElementById("pago").value;
-    let total=Object.values(selected).reduce((a,b)=>a+b,0);
+function sendWhatsApp() {
+    const pedido = Object.keys(selected).map(x => "• " + x).join("%0A");
+    const nombre = document.getElementById("nombre").value;
+    const direccion = document.getElementById("direccion").value;
+    const telefono = document.getElementById("telefono").value;
+    const zona = document.getElementById("zona").selectedOptions[0].text;
+    const pago = document.getElementById("pago").value;
+    const total = Object.values(selected).reduce((a, b) => a + b, 0);
 
-    let msg=`Hola! Quiero hacer este pedido:%0A%0A${pedido}%0A%0ATotal: $${total}%0A%0ANombre: ${nombre}%0ADirección: ${direccion}%0ATeléfono: ${telefono}%0AZona: ${zona}%0APago: ${pago}%0ASeña mínima: 50% por transferencia`;
+    const msg = `Hola! Quiero hacer este pedido:%0A%0A${pedido}%0A%0ATotal: $${total}%0A%0ANombre: ${nombre}%0ADirección: ${direccion}%0ATeléfono: ${telefono}%0AZona: ${zona}%0APago: ${pago}%0ASeña mínima: 50% por transferencia`;
 
-    window.open(`https://wa.me/${whatsapp}?text=${msg}`);
+    window.open(`https://wa.me/${whatsapp}?text=${msg}`, "_blank");
 }
 
 renderProducts();
