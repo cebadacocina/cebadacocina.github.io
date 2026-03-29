@@ -124,11 +124,11 @@ input,select{
 
         <div id="shippingMessage"></div>
 
-        <select id="pago">
-            <option value="">Forma de pago</option>
-            <option>Transferencia (50% para confirmar)</option>
-            <option>Efectivo</option>
-        </select>
+       <select id="pago">
+    <option value="">Forma de pago</option>
+    <option>Transferencia 100%</option>
+    <option>50% transferencia + saldo en efectivo</option>
+</select>
 
         <button class="btn" onclick="sendWhatsApp()">Enviar pedido por WhatsApp</button>
     </div>
@@ -298,7 +298,7 @@ function sendWhatsApp(){
     let pago=document.getElementById("pago").value;
     let total=Object.values(selected).reduce((a,b)=>a+b,0);
 
-    let msg=`Hola! Quiero hacer este pedido:%0A%0A${pedido}%0A%0ATotal: $${total}%0A%0ANombre: ${nombre}%0ADirección: ${direccion}%0ATeléfono: ${telefono}%0AZona: ${zona}%0APago: ${pago}`;
+    let msg=`Hola! Quiero hacer este pedido:%0A%0A${pedido}%0A%0ATotal: $${total}%0A%0ANombre: ${nombre}%0ADirección: ${direccion}%0ATeléfono: ${telefono}%0AZona: ${zona}%0APago: ${pago}%0ASeña requerida: 50% para confirmar pedido
 
     window.open(`https://wa.me/${whatsapp}?text=${msg}`);
 }
