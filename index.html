@@ -124,13 +124,18 @@ input,select{
 
         <div id="shippingMessage"></div>
 
-       <select id="pago">
+     <select id="pago">
     <option value="">Forma de pago</option>
     <option>Transferencia 100%</option>
     <option>50% transferencia + saldo en efectivo</option>
 </select>
 
-        <button class="btn" onclick="sendWhatsApp()">Enviar pedido por WhatsApp</button>
+<div class="payment-note">
+    Todos los pedidos se confirman con un mínimo del 50% por transferencia.
+    Si elegís efectivo, corresponde al saldo restante al momento de la entrega.
+</div>
+
+<button class="btn" onclick="sendWhatsApp()">Enviar pedido por WhatsApp</button>
     </div>
 </div>
 
