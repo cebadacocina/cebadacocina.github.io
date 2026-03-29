@@ -1,111 +1,252 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Cebada Cocina</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>**Cebada Cocina**</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 20px;
-      background: #f5f0f2;
-    }
+<style>
+body {
+  font-family: sans-serif;
+  margin: 0;
+  background: sweet pink;
+}
 
-    h1 {
-      text-align: center;
-    }
+.header {
+  background-image: url("https://images.unsplash.com/photo-1608198093002-ad4e005484ec");
+  background-size: cover;
+  background-position: center;
+  padding: 80px 20px;
+  text-align: center;
+}
 
-    .box {
-      background: white;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
+.header h1 {
+  background: rgba(255,255,255,0.85);
+  display: inline-block;
+  padding: 12px 25px;
+  border-radius: 10px;
+  font-size: 32px;
+}
 
-    select, input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
+.container {
+  padding: 20px;
+}
 
-    button {
-      width: 100%;
-      padding: 15px;
-      background: black;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-    }
-  </style>
+.box {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+select, input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 100%;
+  padding: 18px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+}
+</style>
 </head>
 
 <body>
 
-<h1>CEBADA COCINA</h1>
+<div class="header">
+  <h1>CEBADA COCINA</h1>
+  <p>Producción diaria · Pedidos por encargo</p>
+</div>
+
+<div class="container">
 
 <div class="box">
-  <h3>Medialunas</h3>
-  <select id="medialunas">
-    <option value="">Seleccionar</option>
-    <option>Media docena</option>
-    <option>Docena</option>
-    <option>2 docenas</option>
-  </select>
+<h3>Medialunas</h3>
+<select id="medialunas">
+<option value="">Seleccionar</option>
+<option>Media docena - $8000</option>
+<option>1 docena - $15000</option>
+<option>2 docenas - $30000</option>
+<option>3 docenas - $45000</option>
+<option>4 docenas - $60000</option>
+<option>5 docenas - $75000</option>
+<option>6 docenas - $90000</option>
+</select>
 </div>
 
 <div class="box">
-  <h3>Cookies</h3>
-  <select id="cookies">
-    <option value="">Seleccionar</option>
-    <option>Pack x6</option>
-    <option>Pack x12</option>
-  </select>
+<h3>Cookies</h3>
+
+<select id="cookieTipo">
+<option value="">Tipo</option>
+<option>Choco nuez</option>
+<option>Choco maní</option>
+<option>Tres chocolates</option>
+</select>
+
+<select id="cookieCantidad">
+<option value="">Cantidad</option>
+<option>12 minis - $13000</option>
+<option>24 minis - $26000</option>
+<option>36 minis - $39000</option>
+<option>6 grandes - $13000</option>
+<option>12 grandes - $26000</option>
+<option>18 grandes - $39000</option>
+</select>
+</div>
+
+  <div class="box">
+<h3>Granola</h3>
+
+<select id="granola">
+<option value="">Seleccionar</option>
+<option>Bolsa 300g - $8500</option>
+<option>2 bolsas - $17000</option>
+<option>3 bolsas - $25500</option>
+</select>
+
 </div>
 
 <div class="box">
-  <h3>Alfajores</h3>
-  <select id="alfajores">
-    <option value="">Seleccionar</option>
-    <option>Pack x6</option>
-  </select>
+<h3>Alfajores</h3>
+
+<select id="alfajorTipo">
+<option value="">Tipo</option>
+<option>Chocolate</option>
+<option>Glaseado</option>
+<option>Maicena</option>
+</select>
+
+<select id="alfajorCantidad">
+<option value="">Cantidad</option>
+<option>1 unidad - $2000</option>
+<option>2 unidades - $4000</option>
+<option>3 unidades - $6000</option>
+<option>5 unidades - $10000</option>
+  <option>6 unidades - $12000</option>
+  <option>7 unidades - $14000</option>
+  <option>8 unidades - $16000</option>
+  <option>9 unidades - $18000</option>
+<option>10 unidades - $20000</option>
+</select>
 </div>
 
 <div class="box">
-  <h3>Datos</h3>
-  <input id="nombre" placeholder="Nombre">
-  <input id="direccion" placeholder="Dirección">
-  <input id="telefono" placeholder="Teléfono">
+<h3>Otros productos</h3>
+
+<select id="otros">
+<option value="">Seleccionar</option>
+<option>Mix alfajorcitos (8) - $6000</option>
+<option>Pepas 250g - $5500</option>
+<option>Pan semi integral entero con semillas - $7000</option>
+<option>Pan semi integral con semillas cortado - $7500</option>
+<option>Pan centeno entero - $9000</option>
+<option>Pan centeno cortado - $9500</option>
+<option>Chipacitos x15 - $14000</option>
+<option>Chipacitos x30 - $30000</option>
+<option>Chipacitos x45 - $42000</option>
+</select>
 </div>
 
-<button onclick="enviarPedido()">ENVIAR PEDIDO</button>
+<div class="box">
+<h3>Envíos</h3>
+
+<p><b>Envío sin cargo según zona:</b></p>
+
+<p>Guillón, Lavallol, Turdera → desde $15.000</p>
+<p>Monte Grande, El Jagüel → desde $20.000</p>
+<p>Adrogué, Burzaco, Mármol, Temperley → desde $30.000</p>
+<p>Lomas, Banfield, Canning → desde $40.000</p>
+
+<p><i>Pedidos menores consultar costo de envío</i></p>
+<div class="box">
+<h3>Envíos</h3>
+
+<p><b>Envío sin cargo según zona:</b></p>
+
+<p>Guillón, Lavallol, Turdera → desde $15.000</p>
+<p>Monte Grande, El Jagüel → desde $20.000</p>
+<p>Adrogué, Burzaco, Mármol, Temperley → desde $30.000</p>
+<p>Lomas, Banfield, Canning → desde $40.000</p>
+
+<p><i>Pedidos menores consultar costo de envío</i></p>
+</div>
+
+<div class="box">
+<h3>Datos</h3>
+
+<input id="nombre" placeholder="Nombre">
+<input id="direccion" placeholder="Dirección">
+
+<select id="zona" onchange="calcularTotal()">
+<option value="">Seleccionar zona</option>
+<p id="mensajeEnvio" style="font-weight:bold; color:black;"></p>
+<input id="telefono" placeholder="Teléfono">
+</div>
+<option>Guillón / Lavallol / Turdera (envío gratis desde $15.000)</option>
+<option>Monte Grande / El Jagüel (envío gratis desde $20.000)</option>
+<option>Adrogué / Burzaco / Mármol / Temperley (envío gratis desde $30.000)</option>
+<option>Lomas / Banfield / Canning (envío gratis desde $50.000)</option>
+<option>Otra zona</option>
+
+<div id="resumenPedido" style="
+background:#e8f3ec;
+border:2px solid #8fbfa3;
+padding:15px;
+border-radius:12px;
+margin-top:10px;
+font-weight:600;
+color:#2f5d50;
+">
+Total: $0
+</div>
+
+<input id="telefono" placeholder="Teléfono">
+
+</div>
+
+<button onclick="enviarPedido()">CONFIRMAR PEDIDO POR WHATSAPP</button>
+
+</div>
 
 <script>
 function enviarPedido() {
-  let mensaje = "Hola! Quiero pedir:%0A";
 
-  let med = document.getElementById("medialunas").value;
-  let cook = document.getElementById("cookies").value;
-  let alfa = document.getElementById("alfajores").value;
+let mensaje = "Hola! Quiero pedir:%0A";
 
-  if (med) mensaje += "- Medialunas: " + med + "%0A";
-  if (cook) mensaje += "- Cookies: " + cook + "%0A";
-  if (alfa) mensaje += "- Alfajores: " + alfa + "%0A";
+let med = document.getElementById("medialunas").value;
+  let granola = document.getElementById("granola").value;
+let tipoCookie = document.getElementById("cookieTipo").value;
+let cantCookie = document.getElementById("cookieCantidad").value;
+let alfaTipo = document.getElementById("alfajorTipo").value;
+let alfaCant = document.getElementById("alfajorCantidad").value;
+let otros = document.getElementById("otros").value;
+let zona = document.getElementById("zona").value;
+if (med) mensaje += "- Medialunas: " + med + "%0A";
+if (granola) mensaje += "- Granola: " + granola + "%0A";
+if (tipoCookie && cantCookie) mensaje += "- Cookies: " + tipoCookie + " / " + cantCookie + "%0A";
+if (alfaTipo && alfaCant) mensaje += "- Alfajores: " + alfaTipo + " / " + alfaCant + "%0A";
+if (otros) mensaje += "- " + otros + "%0A";
 
-  let nombre = document.getElementById("nombre").value;
-  let direccion = document.getElementById("direccion").value;
-  let telefono = document.getElementById("telefono").value;
+let nombre = document.getElementById("nombre").value;
+let direccion = document.getElementById("direccion").value;
+let telefono = document.getElementById("telefono").value;
 
-  mensaje += "%0A";
-  mensaje += "Nombre: " + nombre + "%0A";
-  mensaje += "Dirección: " + direccion + "%0A";
-  mensaje += "Teléfono: " + telefono;
+mensaje += "%0A";
+mensaje += "Nombre: " + nombre + "%0A";
+mensaje += "Dirección: " + direccion + "%0A";
+mensaje += "Teléfono: " + telefono;
 
-  window.open("https://wa.me/549TU_NUMERO?text=" + mensaje);
+window.open("https://wa.me/5491122897108?text=" + mensaje);
 }
 </script>
 
