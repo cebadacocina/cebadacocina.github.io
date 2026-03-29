@@ -35,7 +35,6 @@ h1{
     width:100%;
     border:none;
     text-align:center;
-    outline:none;
     font-size:20px;
     border-radius:12px;
     margin-bottom:12px;
@@ -58,8 +57,12 @@ h1{
 .item:last-child{
     border:none;
 }
+h3{
+    margin-top:20px;
+    color:#556b55;
+}
 .total-box{
-    position: relative;
+    position:relative;
     background:#eef3ea;
     border:1px solid #c4d0bc;
     padding:20px;
@@ -67,13 +70,13 @@ h1{
     margin-top:30px;
     margin-bottom:40px;
 }
-}
 input,select{
     width:100%;
     padding:12px;
     margin-top:10px;
     border-radius:10px;
     border:1px solid #ccc;
+    box-sizing:border-box;
 }
 #shippingMessage{
     margin-top:12px;
@@ -99,7 +102,7 @@ input,select{
 <body>
 <div class="container">
     <h1>CEBADA COCINA</h1>
-    <div class="subtitle">Se trabaja con stock diario, pedido con anticipación</div>
+    <div class="subtitle">Producción diaria · pedidos programados</div>
 
     <div id="products"></div>
 
@@ -136,106 +139,168 @@ const whatsapp="5491122897108";
 const productsDiv=document.getElementById("products");
 
 const catalog={
-"MEDIALUNAS":[
-["Media docena",8000],["1 docena",15000],["2 docenas",30000],
-["3 docenas",45000],["4 docenas",60000],["5 docenas",75000],["6 docenas",90000]
-],
-"COOKIES CHOCO NUEZ":[
-["12 minis",13000],["24 minis",26000],["36 minis",39000],
-["6 grandes",13000],["12 grandes",26000],["18 grandes",39000]
-],
-"COOKIES CHOCO MANÍ":[
-["12 minis",13000],["24 minis",26000],["36 minis",39000],
-["6 grandes",13000],["12 grandes",26000],["18 grandes",39000]
-],
-"COOKIES TRIPLE CHOCOLATE":[
-["12 minis",13000],["24 minis",26000],["36 minis",39000],
-["6 grandes",13000],["12 grandes",26000],["18 grandes",39000]
-],
-"ALFAJORES MAICENA":[],
-"ALFAJORES CHOCOLATE":[],
-"ALFAJORES GLASEADO":[],
-"GRANOLA":[],
-"CHIPACITOS":[],
-"PANIFICADOS":[
-["Pan semi integral",7000],["2 unidades",14000],["1 cortado",7500],["2 cortado",15000],
-["Centeno",9000],["2 centeno",18000],["Centeno cortado",9500],["2 centeno cortado",19000],
-["Pepas 250gr",5000],["Pepas x2",10000],["Matera x12",14000],["Matera x2",28000]
-]
+"MEDIALUNAS":{
+    "Opciones":[
+        ["Media docena",8000],
+        ["1 docena",15000],
+        ["2 docenas",29000],
+        ["3 docenas",43000],
+        ["4 docenas",56000],
+        ["5 docenas",69000],
+        ["6 docenas",82000]
+    ]
+},
+"COOKIES":{
+    "Choco Nuez":[
+        ["12 minis",13000],
+        ["24 minis",25000],
+        ["36 minis",36000],
+        ["6 grandes",13000],
+        ["12 grandes",25000],
+        ["18 grandes",36000]
+    ],
+    "Choco Maní":[
+        ["12 minis",13000],
+        ["24 minis",25000],
+        ["36 minis",36000],
+        ["6 grandes",13000],
+        ["12 grandes",25000],
+        ["18 grandes",36000]
+    ],
+    "Triple Chocolate":[
+        ["12 minis",13000],
+        ["24 minis",25000],
+        ["36 minis",36000],
+        ["6 grandes",13000],
+        ["12 grandes",25000],
+        ["18 grandes",36000]
+    ]
+},
+"ALFAJORES":{
+    "Maicena":[],
+    "Chocolate":[],
+    "Glaseado":[]
+},
+"GRANOLA":{
+    "Opciones":[]
+},
+"CHIPACITOS":{
+    "Opciones":[]
+},
+"PANIFICADOS":{
+    "Opciones":[
+        ["Pan semi integral",7000],
+        ["2 unidades",14000],
+        ["1 cortado",7500],
+        ["2 cortado",15000],
+        ["Centeno",9000],
+        ["2 centeno",18000],
+        ["Centeno cortado",9500],
+        ["2 centeno cortado",19000],
+        ["Pepas 250gr",5000],
+        ["Pepas x2",10000],
+        ["Matera x12 surtida",14000],
+        ["Matera surtida x2",28000]
+    ]
+}
 };
 
-for(let i=1;i<=10;i++){
-catalog["ALFAJORES MAICENA"].push([`${i} unidad`,i*2000]);
-catalog["ALFAJORES CHOCOLATE"].push([`${i} unidad`,i*2000]);
-catalog["ALFAJORES GLASEADO"].push([`${i} unidad`,i*2000]);
+const alfajorPrices=[2000,4000,6000,8000,10000,12000,13600,15200,16600,18000];
+
+["Maicena","Chocolate","Glaseado"].forEach(tipo=>{
+    for(let i=1;i<=10;i++){
+        catalog["ALFAJORES"][tipo].push([`${i} unidades`,alfajorPrices[i-1]]);
+    }
+});
+
+for(let i=1;i<=5;i++){
+    catalog["GRANOLA"]["Opciones"].push([`${i} bolsa 300gr`,i*8500]);
 }
-for(let i=1;i<=5;i++) catalog["GRANOLA"].push([`${i} bolsa`,i*8500]);
-for(let i=1;i<=4;i++) catalog["CHIPACITOS"].push([`${i*15} unidades`,i*14000]);
+
+for(let i=1;i<=4;i++){
+    catalog["CHIPACITOS"]["Opciones"].push([`${i*15} unidades`,i*14000]);
+}
 
 let selected={};
 
 function renderProducts(){
-for(let cat in catalog){
-let button=document.createElement("button");
-button.className="accordion";
-button.innerText=cat;
-button.onclick=function(){
-panel.style.display=panel.style.display==="block"?"none":"block";
-};
+    for(let mainCat in catalog){
+        let mainButton=document.createElement("button");
+        mainButton.className="accordion";
+        mainButton.innerText=mainCat;
 
-let panel=document.createElement("div");
-panel.className="panel";
+        let mainPanel=document.createElement("div");
+        mainPanel.className="panel";
 
-catalog[cat].forEach(item=>{
-let row=document.createElement("div");
-row.className="item";
-row.innerHTML=`
-<label>${item[0]} - $${item[1]}</label>
-<input type="checkbox" style="width:auto"
-onchange="toggleItem('${cat}','${item[0]}',${item[1]},this.checked)">
-`;
-panel.appendChild(row);
-});
+        mainButton.onclick=function(){
+            mainPanel.style.display=
+            mainPanel.style.display==="block"?"none":"block";
+        };
 
-productsDiv.appendChild(button);
-productsDiv.appendChild(panel);
-}
+        for(let subCat in catalog[mainCat]){
+            let subTitle=document.createElement("h3");
+            subTitle.innerText=subCat;
+            mainPanel.appendChild(subTitle);
+
+            catalog[mainCat][subCat].forEach(item=>{
+                let row=document.createElement("div");
+                row.className="item";
+                row.innerHTML=`
+                    <label>${item[0]} - $${item[1]}</label>
+                    <input type="checkbox" style="width:auto"
+                    onchange="toggleItem('${mainCat} - ${subCat}','${item[0]}',${item[1]},this.checked)">
+                `;
+                mainPanel.appendChild(row);
+            });
+        }
+
+        productsDiv.appendChild(mainButton);
+        productsDiv.appendChild(mainPanel);
+    }
 }
 
 function toggleItem(cat,name,price,checked){
-let key=cat+" - "+name;
-if(checked) selected[key]=price;
-else delete selected[key];
-updateTotal();
+    let key=cat+" - "+name;
+    if(checked) selected[key]=price;
+    else delete selected[key];
+    updateTotal();
 }
 
 function updateTotal(){
-let total=Object.values(selected).reduce((a,b)=>a+b,0);
-document.getElementById("total").innerText=total;
-updateShipping();
+    let total=Object.values(selected).reduce((a,b)=>a+b,0);
+    document.getElementById("total").innerText=total;
+    updateShipping();
 }
 
 function updateShipping(){
-let total=Object.values(selected).reduce((a,b)=>a+b,0);
-let min=Number(document.getElementById("zona").value);
-let msg=document.getElementById("shippingMessage");
-if(!min){msg.innerText=""; return;}
-if(total>=min) msg.innerText="✅ ¡Ya tenés envío gratis!";
-else msg.innerText=`Te faltan $${min-total} para envío gratis`;
+    let total=Object.values(selected).reduce((a,b)=>a+b,0);
+    let min=Number(document.getElementById("zona").value);
+    let msg=document.getElementById("shippingMessage");
+
+    if(!min){
+        msg.innerText="";
+        return;
+    }
+
+    if(total>=min){
+        msg.innerText="✅ ¡Ya tenés envío gratis!";
+    }else{
+        msg.innerText=`Te faltan $${min-total} para envío gratis`;
+    }
 }
 
 function sendWhatsApp(){
-let pedido=Object.keys(selected).map(x=>"• "+x).join("%0A");
-let nombre=document.getElementById("nombre").value;
-let direccion=document.getElementById("direccion").value;
-let telefono=document.getElementById("telefono").value;
-let zona=document.getElementById("zona").selectedOptions[0].text;
-let pago=document.getElementById("pago").value;
-let total=Object.values(selected).reduce((a,b)=>a+b,0);
+    let pedido=Object.keys(selected).map(x=>"• "+x).join("%0A");
+    let nombre=document.getElementById("nombre").value;
+    let direccion=document.getElementById("direccion").value;
+    let telefono=document.getElementById("telefono").value;
+    let zona=document.getElementById("zona").selectedOptions[0].text;
+    let pago=document.getElementById("pago").value;
+    let total=Object.values(selected).reduce((a,b)=>a+b,0);
 
-let msg=`Hola! Quiero hacer este pedido:%0A%0A${pedido}%0A%0ATotal: $${total}%0A%0ANombre: ${nombre}%0ADirección: ${direccion}%0ATeléfono: ${telefono}%0AZona: ${zona}%0APago: ${pago}`;
+    let msg=`Hola! Quiero hacer este pedido:%0A%0A${pedido}%0A%0ATotal: $${total}%0A%0ANombre: ${nombre}%0ADirección: ${direccion}%0ATeléfono: ${telefono}%0AZona: ${zona}%0APago: ${pago}`;
 
-window.open(`https://wa.me/${whatsapp}?text=${msg}`);
+    window.open(`https://wa.me/${whatsapp}?text=${msg}`);
 }
 
 renderProducts();
