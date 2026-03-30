@@ -132,7 +132,7 @@ input,select{
     Empresas y Eventos 🏢
 </button>
     <div id="products"></div>
-
+</button>
     <div class="total-box">
         <h2>Total: $<span id="total">0</span></h2>
 
@@ -365,7 +365,7 @@ function sendWhatsApp() {
     const zona = document.getElementById("zona").selectedOptions[0].text;
     const pago = document.getElementById("pago").value;
     const total = Object.values(selected).reduce((a, b) => a + b, 0);
-    function goToSpecialWhatsApp(){
+function goToSpecialWhatsApp(){
     const msg = "Hola! Quiero consultar por catering, tortas o un pedido especial.";
     window.open(`https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
 }
