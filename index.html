@@ -152,24 +152,12 @@ input,select{
 <script>
 const whatsapp = "5491122897108";
 const productsDiv = document.getElementById("products");
-
+function goToEventsWhatsApp(){
+    const msg = "Hola! Quiero consultar por catering, tortas Y EVENTOS.";
+    window.open(`https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
+}
 const catalog = {
-    "EMPRESAS Y EVENTOS": {
-        "Coffee Break": [
-            ["20 medialunas", 26000],
-            ["40 medialunas", 50000],
-            ["60 medialunas", 72000]
-        ],
-        "Cookies Evento": [
-            ["50 minis surtidas", 52000],
-            ["100 minis surtidas", 98000]
-        ],
-        "Alfajores Box": [
-            ["20 alfajores surtidos", 38000],
-            ["40 alfajores surtidos", 74000]
-        ]
-    },
-
+    
     "MEDIALUNAS": {
         "Opciones": [
             ["Media docena", 8000],
