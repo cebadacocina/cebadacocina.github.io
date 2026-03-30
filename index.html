@@ -106,14 +106,31 @@ input,select{
     font-size:18px;
     cursor:pointer;
     margin-top:15px;
+.special-btn{
+    width:100%;
+    background:#7b6d5c;
+    color:white;
+    border:none;
+    padding:16px;
+    border-radius:12px;
+    font-size:20px;
+    cursor:pointer;
+    margin-bottom:20px;
 }
 </style>
+    
 </head>
 <body>
 <div class="container">
     <h1>CEBADA COCINA</h1>
     <div class="subtitle">Producción diaria · pedidos programados</div>
+<button class="special-btn" onclick="goToSpecialWhatsApp()">
+    Catering y Tortas 🎂
+</button>
 
+<button class="special-btn" onclick="goToEventsWhatsApp()">
+    Empresas y Eventos 🏢
+</button>
     <div id="products"></div>
 
     <div class="total-box">
@@ -153,8 +170,6 @@ input,select{
 const whatsapp = "5491122897108";
 const productsDiv = document.getElementById("products");
 function goToEventsWhatsApp(){
-    const msg = "Hola! Quiero consultar por catering, tortas Y EVENTOS.";
-    window.open(`https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
 }
 const catalog = {
     
@@ -350,6 +365,15 @@ function sendWhatsApp() {
     const zona = document.getElementById("zona").selectedOptions[0].text;
     const pago = document.getElementById("pago").value;
     const total = Object.values(selected).reduce((a, b) => a + b, 0);
+    function goToSpecialWhatsApp(){
+    const msg = "Hola! Quiero consultar por catering, tortas o un pedido especial.";
+    window.open(`https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
+}
+
+function goToEventsWhatsApp(){
+    const msg = "Hola! Quiero consultar por una propuesta para empresas o evento.";
+    window.open(`https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
+}
 
     const msg = `Hola! Quiero hacer este pedido:%0A%0A${pedido}%0A%0ATotal: $${total}%0A%0ANombre: ${nombre}%0ADirección: ${direccion}%0ATeléfono: ${telefono}%0AZona: ${zona}%0APago: ${pago}%0ASeña mínima: 50% por transferencia`;
 
